@@ -1,8 +1,17 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+name:
+  value: mrsaber
 spring:
   cloud:
     config:
-      server:
-        git:
-          uri: https://github.com/mrabetsaber/erp-config-repo.git
-          searchPaths: '{application}'
-          cloneOnStart: true
+      override-system-properties: false
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
