@@ -1,9 +1,9 @@
 server:
-  port: 8071
+  port: 8073
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/item
+    url: jdbc:postgresql://localhost:5432/inventory
     username: postgres
     password: admin
   jpa:
