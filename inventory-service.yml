@@ -1,16 +1,19 @@
 server:
   port: 8073
+
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/inventory
     username: postgres
     password: admin
+
   jpa:
     hibernate:
-      ddl-auto: update  # Change to 'update' to preserve data
+      ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
   kafka:
     producer:
       bootstrap-servers: localhost:9092
@@ -19,10 +22,16 @@ spring:
       properties:
         spring.json.type.mapping: orderConfirmation:com.alibou.ecommerce.kafka.OrderConfirmation
 
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: inventory-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.erp.inventory_service.dto"
+
 application:
   config:
     customer-url: http://localhost:8222/api/v1/customers
     payment-url: http://localhost:8222/api/v1/payments
     product-url: http://localhost:8222/api/v1/products
-
-
