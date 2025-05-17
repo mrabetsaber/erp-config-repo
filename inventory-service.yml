@@ -22,7 +22,7 @@ spring:
       properties:
         spring.json.type.mapping: orderConfirmation:com.alibou.ecommerce.kafka.OrderConfirmation
 
-     consumer:
+    consumer:
       bootstrap-servers: localhost:9092
       group-id: inventory-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
