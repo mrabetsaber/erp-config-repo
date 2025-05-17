@@ -25,7 +25,7 @@ spring:
     consumer:
       bootstrap-servers: localhost:9092
       group-id: inventory-service
-      key-deserializer: org.apache.kafka.common.serialization.ErrorHandlingDeserializer
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
         spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
