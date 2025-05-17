@@ -1,19 +1,27 @@
-eureka:
-  instance:
-    hostname: eureka-server  # Name of your Eureka server container
-  client:
-    serviceUrl:
-      defaultZone: http://eureka-server:8761/eureka  # Use container name here
-
-name:
-  value: mrsaber
+global:
+  params:
+    p1: 333
+    p2: 3333
 
 spring:
+  h2:
+    console:
+      enabled: true
   cloud:
+    discovery:
+      enabled: true
     config:
-      override-system-properties: false
+      enabled: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka}
 
 management:
-  tracing:
-    sampling:
-      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: "*"
