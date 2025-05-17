@@ -22,13 +22,13 @@ spring:
       properties:
         spring.json.type.mapping: orderConfirmation:com.alibou.ecommerce.kafka.OrderConfirmation
 
-    consumer:
+     consumer:
       bootstrap-servers: localhost:9092
       group-id: inventory-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.trusted.packages: "com.erp.inventory_service.dto"
+        spring.json.trusted.packages: "java.util,java.lang,com.erp.inventory_service.dto,com.erp.stock_operation_service.dto"
 
 application:
   config:
