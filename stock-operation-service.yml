@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${DB_HOST:db}:5432/${DB_NAME:stock_operation}
+    url: jdbc:postgresql://${DB_HOST:db}:5432/${DB_NAME:stock_operations}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:admin}
 
