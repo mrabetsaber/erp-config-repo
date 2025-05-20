@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/stock_operation
+    url: jdbc:postgresql://localhost:5432/inventory
     username: postgres
     password: admin
 
@@ -21,6 +21,15 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         spring.json.type.mapping: orderConfirmation:com.alibou.ecommerce.kafka.OrderConfirmation
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: inventory-service
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        spring.json.trusted.packages: "java.util,java.lang,com.erp.inventory_service.dto,com.erp.stock_operation_service.dto"
 
 management:
   endpoints:
