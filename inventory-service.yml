@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${DB_HOST:host.docker.internal}:5432/${DB_NAME:inventory}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:admin}
+    url: jdbc:postgresql://localhost:5432/stock_operation
+    username: postgres
+    password: admin
 
   jpa:
     hibernate:
@@ -15,32 +15,18 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   kafka:
+    bootstrap-servers: localhost:9092
     producer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-    consumer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
-      group-id: inventory-service
-      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
-        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
-        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
-        spring.json.trusted.packages: "java.util,java.lang,com.erp.inventory_service.dto,com.erp.stock_operation_service.dto"
-
-application:
-  config:
-    customer-url: http://host.docker.internal:8222/api/v1/customers
-    payment-url: http://host.docker.internal:8222/api/v1/payments
-    product-url: http://host.docker.internal:8222/api/v1/products
+        spring.json.type.mapping: orderConfirmation:com.alibou.ecommerce.kafka.OrderConfirmation
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,env
+        include: health,info,metrics,prometheus,env
   endpoint:
     health:
       show-details: always
