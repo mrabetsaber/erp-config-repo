@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/stock-adjustments
+    url: jdbc:postgresql://localhost:5432/stock_adjustments
     username: postgres
     password: admin
 
