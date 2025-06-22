@@ -19,8 +19,10 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.json.type.mapping: orderConfirmation:com.alibou.ecommerce.kafka.OrderConfirmation
+      retries: 0                  # disable retries
+      delivery.timeout.ms: 30000  # max total time allowed to deliver a message (30 seconds)
+      request.timeout.ms: 10000   # request timeout for Kafka broker (10 seconds)
+      retry.backoff.ms: 1000      # wait 1 second between retries (ignored if retries=0)
 
 management:
   endpoints:
