@@ -20,16 +20,27 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       retries: 0
-      delivery.timeout.ms: 5000
-      request.timeout.ms: 2000
-      max.block.ms: 2000
-      retry.backoff.ms: 1000
+      delivery:
+        timeout:
+          ms: 5000
+      request:
+        timeout:
+          ms: 2000
+      max-block:
+        ms: 2000
+      retry:
+        backoff:
+          ms: 1000
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus,env
+        include: health,info,metrics,prometheus
   endpoint:
     health:
       show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
