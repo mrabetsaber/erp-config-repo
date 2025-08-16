@@ -28,7 +28,7 @@ spring:
       properties:
         spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
-        spring.json.trusted.packages: "java.util,java.lang,com.erp.inventory_service.dto,com.erp.stock_operation_service.dto,com.erp.stock_operation_service.dto,com.erp.stock_adjustments_service.dto,com.erp.sales_order_service.dto.SalesOrderLineDto"
+        spring.json.trusted.packages: "java.util,java.lang,com.erp.inventory_service.dto,com.erp.stock_operation_service.dto,com.erp.stock_operation_service.dto,com.erp.stock_adjustments_service.dto,com.erp.sales_order_service.dto"
 
 application:
   config:
